@@ -112,7 +112,7 @@ def new_member(bot: Bot, update: Update):
                     "I have been added to {} with ID: <pre>{}</pre>".format(chat.title, chat.id),
                     parse_mode=ParseMode.HTML
                 )
-                bot.send_message(chat.id, "Thanks for adding me into your group! Don't forgot to checkout our news channel!")
+                bot.send_message(chat.id, "Nope")
 
             else:
                 # If welcome message is media, send with appropriate function
@@ -299,7 +299,7 @@ def left_member(bot: Bot, update: Update):
 
             # Give the owner a special goodbye
             if left_mem.id == OWNER_ID:
-                update.effective_message.reply_text("Well, My mater have left, The party now ended!")
+                update.effective_message.reply_text("Bye owner")
                 return
 
             # if media goodbye, use appropriate function for it
@@ -377,14 +377,14 @@ def security(bot: Bot, update: Update, args: List[str]) -> str:
         if (var == "yes" or var == "y" or var == "on"):
             check = bot.getChatMember(chat.id, bot.id)
             if check.status == 'member' or check['can_restrict_members'] == False:
-                text = "I can't limit people here! Make sure I'm an admin so I can mute someone!"
+                text = "Bruh I'm not an admin"
                 update.effective_message.reply_text(text, parse_mode="markdown")
                 return ""
             sql.set_welcome_security(chat.id, True, str(cur_value), cust_text)
-            update.effective_message.reply_text("Welcomemute have been enabled! New members will be muted until they clicked the button!")
+            update.effective_message.reply_text("You'll see no bot here other than me")
         elif (var == "no" or var == "n" or var == "off"):
             sql.set_welcome_security(chat.id, False, str(cur_value), cust_text)
-            update.effective_message.reply_text("Welcomemute have been disabled! New members will not be muted anymore!")
+            update.effective_message.reply_text("Beep beep?")
         else:
             update.effective_message.reply_text("Please type `on`/`yes` or `off`/`no`!", parse_mode=ParseMode.MARKDOWN)
     else:
