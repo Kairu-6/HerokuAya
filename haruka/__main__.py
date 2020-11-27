@@ -122,7 +122,7 @@ def start(bot: Bot, update: Update, args: List[str]):
             send_start(bot, update)
     else:
         try:
-            update.effective_message.reply_text("Hey there! I'm alive :3")
+            update.effective_message.reply_text("Hi! ")
         except:
             print("Nut")
 
@@ -135,15 +135,10 @@ def send_start(bot, update):
         pass
 
     #chat = update.effective_chat  # type: Optional[Chat] and unused variable
-    text = "Hey there! My name is Haruka Aya - I'm here to help you manage your groups!\n\
-Click Help button to find out more about how to use me to my full potential.\n\n"
+    text = "Hey there! I'm Lycan!\n\
+Click Help button to find out more about how to use me to my full potential.\n"
 
-    text += "Join [Faq Group](https://t.me/zainstechchat) ( @zainstechchat ) if you need any support or help\n\n\
-Follow [Zains Projects](https://t.me/zainsprojects) ( @ZainsProjects ) if you want to keep up with the news, updates and bot downtime!\n\n\
-\n\nWant to add me to your group? [Click here!](t.me/HarukaAyaBot?startgroup=true)"
-
-    keyboard = [[InlineKeyboardButton(text="📢 Support Group", url="https://t.me/HarukaAyaGroup")]]
-    keyboard += [[InlineKeyboardButton(text="🛠 Control panel", callback_data="cntrl_panel_M")]]
+    keyboard = [[InlineKeyboardButton(text="🛠 Control panel", callback_data="cntrl_panel_M")]]
     keyboard += [[InlineKeyboardButton(text="🇺🇸 Language", callback_data="set_lang_"), 
         InlineKeyboardButton(text="❔ Help", callback_data="help_back")]]
 
@@ -158,7 +153,7 @@ def control_panel(bot, update):
     # ONLY send help in PM
     if chat.type != chat.PRIVATE:
 
-        update.effective_message.reply_text("Contact me in PM to access the control panel.",
+        update.effective_message.reply_text("Please contact me in PM to access the control panel.",
                                             reply_markup=InlineKeyboardMarkup(
                                                 [[InlineKeyboardButton(text="Control Panel",
                                                                        url=f"t.me/{bot.username}?start=controlpanel")]]))
@@ -179,7 +174,7 @@ def control_panel(bot, update):
         back_match = re.match(r"help_back", query.data)
 
     else:
-        M_match = "Haruka Aya is best bot" #LMAO, don't uncomment
+        M_match = "Rawr" #LMAO, don't uncomment
 
     if M_match:
         text = "*Control panel* 🛠"
@@ -199,10 +194,10 @@ def control_panel(bot, update):
                 text += f"\nConnected chat - *{chatG.title}* (you {member.status})"
                 keyboard += [[InlineKeyboardButton(text="👥 Group settings", callback_data="cntrl_panel_G_back")]]
             elif user.id in SUDO_USERS:
-                text += f"\nConnected chat - *{chatG.title}* (you sudo)"
+                text += f"\nConnected chat - *{chatG.title}* (ok sudo)"
                 keyboard += [[InlineKeyboardButton(text="👥 Group settings (SUDO)", callback_data="cntrl_panel_G_back")]]
             else:
-                text += f"\nConnected chat - *{chatG.title}* (you aren't an admin!)"
+                text += f"\nConnected chat - *{chatG.title}* (lol no)"
         else:
             text += "\nNo chat connected!"
 
@@ -386,7 +381,7 @@ def get_help(bot: Bot, update: Update):
     # ONLY send help in PM
     if chat.type != chat.PRIVATE:
 
-        update.effective_message.reply_text("Contact me in PM to get the list of possible commands.",
+        update.effective_message.reply_text("Please contact me in pm.",
                                             reply_markup=InlineKeyboardMarkup(
                                                 [[InlineKeyboardButton(text="Help",
                                                                        url="t.me/{}?start=help".format(
